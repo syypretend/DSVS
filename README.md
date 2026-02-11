@@ -16,7 +16,10 @@ Surgery video summarization can help medical professionals quickly gain the insi
   title = {Dynamic surgery video summarization with balancing informativeness and diversity},
   shorttitle = {DSVS},
   author = {Hao, Wang and Yiyang, Su and Min, Xue and Xuefei, Song and Cheng, Yang and Lei, Shi and Xianqun, Fan and Shuai Ding},
-  year = {2025},
+  year={2026},
+  volume={45},
+  number={2},
+  pages={620-631},
   doi={10.1109/TMI.2025.3603170},
   journal = {IEEE Transactions on Medical Imaging}
 }
