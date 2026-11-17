@@ -1,0 +1,8 @@
+{
+  "test_multi_objective_binary_programming": {
+    "min_size": 15,
+    "jump": 1,
+    "pen": 0.01,
+    "hidden_data_dir": "./IC/hidden_data_JS_K5.npy"
+  }
+}

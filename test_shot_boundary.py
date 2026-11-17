@@ -13,7 +13,7 @@ from sacred.observers import FileStorageObserver
 from torch.utils.tensorboard import SummaryWriter
 import time
 from experiment.ex_test_multi_objective_binary_programming import ingredient, parse_config
-from test import evaluate, evaluate_shot_level, evaluate_triplet
+from tool.utils import evaluate_triplet
 from tool.utils import AverageMeter
 
 ex = Experiment('test_multi_objective_binary_programming', save_git_info=False, ingredients=[ingredient])

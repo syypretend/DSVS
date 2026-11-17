@@ -8,7 +8,6 @@ from torchvision import transforms
 from torch.utils.data import DataLoader
 import torch
 import pandas as pd
-from tool.triplet2IVT import triplet2IVT
 
 
 class CholecVideo(Dataset):

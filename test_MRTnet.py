@@ -1,10 +1,8 @@
 import math
 import matplotlib.pyplot as plt
-from information_contribution import information_contribution_JS_two
+from tool.utils import information_contribution_JS_two
 from ivtmetrics.recognition import Recognition
 import numpy as np
-from test import evaluate
-from tool.PKI_calibration import gridsearchcv_video, PKI
 from tool.sequence_preprocess import get_test_idx
 from tool.triplet2IVT import triplet2IVT
 from tool.utils import AverageMeter, cal_adj_matrix, weight_ivt
@@ -21,10 +19,9 @@ import torch
 from sklearn import metrics
 from dataset import CholecVideo
 from experiment.ex_test_MRTnet import ingredient, parse_config
-from model.MRTnet import MRTnet, MRTnet_trans, MRTnet_lstm, MRTnet_single_lstm
+from model.MRTnet import MRTnet_lstm
 # sacred
 from tool.sequence_preprocess import SeqSampler, get_valid_idx
-from tool.utils import calc_weight_loss
 import warnings
 warnings.filterwarnings("ignore", category=UserWarning)
 ex = Experiment('test_MRTnet', save_git_info=False, ingredients=[ingredient])
@@ -149,18 +146,10 @@ def test_MRTnet_trans(_config):
     recognize_v.reset_global()
     recognize_t.reset_global()
     # each video
-    compactness = []
-    representativeness = []
     hidden_data = {}
     a = []
     b = []
     c = []
-    trans_SVnet_a = []
-    trans_SVnet_b = []
-    trans_SVnet_c = []
-    TMRnet_a = []
-    TMRnet_b = []
-    TMRnet_c = []
     labels_phase = []
     preds_phase = []
     for i in range(len(each_video_length)):
@@ -261,11 +250,6 @@ def test_MRTnet_trans(_config):
         b.append(p_preds_np)
         c.append(p_target_np)
 
-
-        # is_test = False to get alpha and beta; is_test = True to test video summary compactness by using alpha and beta
-        pred_phase = pred_phase.numpy()
-        if config.is_test:
-            pred_phase = PKI(adj_matrix, pred_phase, p_preds_np, p_target_np, config.alpha, config.beta)
         video_corrects_phase = torch.sum(torch.from_numpy(pred_phase) == torch.from_numpy(p_target_np).view(-1))
         labels_phase.append(p_target_np.reshape(-1, 1))
         preds_phase.append(pred_phase.reshape(-1, 1))
@@ -341,9 +325,7 @@ def test_MRTnet_trans(_config):
         print("test to generate hidden_data.npy !")
         # np.save("IC/hidden_data_JS.npy", hidden_data)
     else:
-        print("valid to get alpha and beta !")
-        correct, _ = gridsearchcv_video(adj_matrix, a, b, c) # ours
-        print(f"correct: {correct}")
+        pass
     labels_phase = list(np.vstack(labels_phase).reshape(-1))
     preds_phase = list(np.vstack(preds_phase).reshape(-1))
     recall_phase = metrics.recall_score(labels_phase, preds_phase, average='macro')

@@ -1,0 +1,27 @@
+{
+  "train_MRTnet": {
+    "base_dir": "E:\\CholecT50-train",
+    "batch_size": 200,
+    "sequence_length": 5,
+    "grad_norm": false,
+    "checkpoint": null,
+    "epochs": 60,
+    "warmup_epochs": 5,
+    "DEBUG": false,
+    "gpus": [
+      0,1,2,3
+    ],
+    "loss_weight_file": "data/weight.npy",
+    "adj_matrix": "data/adj_matrix.npy",
+    "mix_prob": 0.5,
+    "num_workers": 16,
+    "optim": "adam",
+    "print_freq": 200,
+    "scheduler_gamma": 0.98,
+    "backbone_lr": 5e-05,
+    "subnet_lr": 1e-04,
+    "crf_lr": 1e-04,
+    "train_index": [0],
+    "valid_index": [1]
+  }
+}

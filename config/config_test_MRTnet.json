@@ -1,0 +1,18 @@
+{
+  "test_MRTnet": {
+    "base_dir": "E:\\CholecT50-train",
+    "batch_size": 100,
+    "sequence_length": 5,
+    "grad_norm": false,
+    "is_test": true,
+    "checkpoint": "D:\\python_project\\small_paper_code\\FedMVSnet\\weight\\MRTnet_single_best_instrument_checkpoint_k5_261_epoch32_i_0.895_v_0.622_t_0.4066_p_0.823.pth",
+    "DEBUG": false,
+    "gpus": [
+     0
+    ],
+    "num_workers": 16,
+    "adj_matrix": "data/adj_matrix.npy",
+    "train_index": [ 1],
+    "valid_index": [ 0]
+  }
+}
